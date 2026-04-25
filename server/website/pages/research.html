@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research — Westbrook University</title>
+  <style>
+    :root{--navy:#0a1628;--gold:#c9a84c;--gold-light:#e8c97a;--cream:#f8f4ed;--white:#fff;--gray:#6b7280;--border:#e0d8cc;--light-gray:#f1f0ee;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--white);color:var(--navy);}
+    nav{position:fixed;top:0;width:100%;z-index:100;background:var(--navy);border-bottom:3px solid var(--gold);display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:72px;box-shadow:0 4px 24px rgba(0,0,0,0.4);}
+    .nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none;}
+    .crest{width:46px;height:46px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:20px;color:var(--navy);}
+    .nav-logo span{font-size:19px;font-weight:800;color:var(--white);}
+    .nav-links{display:flex;gap:4px;list-style:none;}
+    .nav-links a{color:#c9d4e8;text-decoration:none;padding:8px 18px;border-radius:6px;font-size:14px;font-weight:600;transition:all 0.2s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--gold);background:rgba(201,168,76,0.12);}
+    .nav-cta{background:var(--gold)!important;color:var(--navy)!important;font-weight:700!important;border-radius:6px!important;}
+    .page-hero{margin-top:72px;background:linear-gradient(160deg,var(--navy) 0%,#0d1f3c 100%);padding:72px 48px;text-align:center;position:relative;overflow:hidden;}
+    .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 100%,rgba(201,168,76,0.08),transparent 60%);}
+    .page-hero::after{content:'';position:absolute;bottom:0;left:10%;right:10%;height:2px;background:linear-gradient(90deg,transparent,var(--gold),var(--gold-light),var(--gold),transparent);}
+    .page-hero h1{font-size:clamp(2.2rem,4.5vw,3.2rem);font-weight:900;color:var(--white);margin-bottom:14px;position:relative;}
+    .page-hero p{color:#94a3b8;font-size:1.1rem;position:relative;}
+    .breadcrumb{background:var(--light-gray);border-bottom:1px solid var(--border);padding:14px 48px;}
+    .breadcrumb-inner{max-width:1140px;margin:0 auto;font-size:13px;color:var(--gray);}
+    .breadcrumb a{color:var(--gold);text-decoration:none;font-weight:600;}
+    section{padding:80px 48px;}
+    .section-inner{max-width:1140px;margin:0 auto;}
+    .section-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+    .section-label::before{content:'';display:block;width:24px;height:2px;background:var(--gold);}
+    .section-title{font-size:clamp(1.9rem,3vw,2.6rem);font-weight:800;line-height:1.15;color:var(--navy);margin-bottom:32px;}
+    .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);background:var(--navy);border-radius:12px;overflow:hidden;border:1px solid rgba(201,168,76,0.2);margin-bottom:72px;}
+    .r-stat{padding:36px;text-align:center;border-right:1px solid rgba(201,168,76,0.12);}
+    .r-stat:last-child{border-right:none;}
+    .r-num{font-size:2.2rem;font-weight:900;background:linear-gradient(135deg,var(--gold),var(--gold-light));-webkit-background-clip:text;background-clip:text;color:transparent;display:block;line-height:1;}
+    .r-label{font-size:11px;color:#64748b;letter-spacing:1.5px;text-transform:uppercase;margin-top:8px;}
+    .research-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+    .rc{border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:all 0.3s;}
+    .rc:hover{transform:translateY(-5px);box-shadow:0 20px 48px rgba(10,22,40,0.1);}
+    .rc-head{background:var(--navy);padding:28px;}
+    .rc-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);background:rgba(201,168,76,0.15);padding:5px 12px;border-radius:2px;margin-bottom:14px;}
+    .rc-head h3{font-size:1rem;font-weight:700;color:var(--white);line-height:1.45;}
+    .rc-body{padding:22px 24px;}
+    .rc-body p{font-size:0.88rem;color:var(--gray);line-height:1.65;margin-bottom:16px;}
+    .rc-meta{display:flex;justify-content:space-between;font-size:12px;color:#9ca3af;border-top:1px solid var(--border);padding-top:14px;}
+    .rc-meta strong{color:var(--navy);}
+    footer{background:#050d1a;border-top:3px solid var(--gold);padding:60px 48px 28px;}
+    .footer-inner{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;}
+    .footer-brand p{font-size:0.9rem;color:#64748b;margin-top:16px;line-height:1.8;}
+    .footer-col h4{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+    .footer-col ul{list-style:none;}
+    .footer-col li{margin-bottom:10px;}
+    .footer-col a{color:#64748b;text-decoration:none;font-size:14px;transition:color 0.2s;}
+    .footer-col a:hover{color:var(--gold);}
+    .footer-bottom{border-top:1px solid #0f1f35;padding-top:24px;text-align:center;font-size:13px;color:#374151;max-width:1140px;margin:0 auto;}
+    @media(max-width:960px){.stats-bar{grid-template-columns:1fr 1fr;}.r-stat{border-bottom:1px solid rgba(201,168,76,0.12);}.research-grid{grid-template-columns:1fr 1fr;}.footer-inner{grid-template-columns:1fr 1fr;}}
+    @media(max-width:600px){nav{padding:0 20px;}.nav-links{display:none;}section{padding:60px 20px;}.breadcrumb{padding:14px 20px;}.stats-bar,.research-grid{grid-template-columns:1fr;}.footer-inner{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="nav-logo"><div class="crest">W</div><span>Westbrook University</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="programs.html">Programs</a></li>
+    <li><a href="research.html" class="active">Research</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="admissions.html" class="nav-cta">Apply Now</a></li>
+  </ul>
+</nav>
+<div class="page-hero">
+  <h1>Research & Innovation</h1>
+  <p>Advancing the boundaries of human knowledge across every discipline</p>
+</div>
+<div class="breadcrumb"><div class="breadcrumb-inner"><a href="../index.html">Home</a> › Research</div></div>
+<section>
+  <div class="section-inner">
+    <div class="section-label">By the Numbers</div>
+    <h2 class="section-title">Research at Scale</h2>
+    <div class="stats-bar">
+      <div class="r-stat"><span class="r-num">$280M</span><div class="r-label">Annual Funding</div></div>
+      <div class="r-stat"><span class="r-num">1,400+</span><div class="r-label">Active Projects</div></div>
+      <div class="r-stat"><span class="r-num">340</span><div class="r-label">Patents Filed</div></div>
+      <div class="r-stat"><span class="r-num">8,200+</span><div class="r-label">Publications / Year</div></div>
+    </div>
+    <div class="section-label">Current Work</div>
+    <h2 class="section-title">Featured Research Projects</h2>
+    <div class="research-grid">
+      <div class="rc"><div class="rc-head"><div class="rc-tag">Cybersecurity · AI</div><h3>Real-Time DDoS Detection Using Deep Learning on Network Traffic</h3></div><div class="rc-body"><p>Developing ML models that identify distributed denial-of-service attacks in under 200ms using CNNs trained on live packet flows.</p><div class="rc-meta"><span>Lead: <strong>Prof. Okafor</strong></span><span>Grant: <strong>$4.2M</strong></span></div></div></div>
+      <div class="rc"><div class="rc-head"><div class="rc-tag">Biotechnology</div><h3>CRISPR-Based Gene Editing for Rare Genetic Disorder Treatment</h3></div><div class="rc-body"><p>Using targeted CRISPR-Cas9 to correct mutations in monogenic disorders. Phase 2 clinical trials with National Health Institute.</p><div class="rc-meta"><span>Lead: <strong>Dr. Patel</strong></span><span>Grant: <strong>$12M</strong></span></div></div></div>
+      <div class="rc"><div class="rc-head"><div class="rc-tag">Climate Science</div><h3>Predictive Modeling for Urban Heat Islands in Coastal Cities</h3></div><div class="rc-body"><p>Combining satellite data and IoT sensors to model dangerous urban heat events with 48-hour advance warning capability.</p><div class="rc-meta"><span>Lead: <strong>Prof. Amara</strong></span><span>Grant: <strong>$6.8M</strong></span></div></div></div>
+      <div class="rc"><div class="rc-head"><div class="rc-tag">Quantum Computing</div><h3>Error Correction Algorithms for Near-Term Quantum Processors</h3></div><div class="rc-body"><p>Designing fault-tolerant quantum circuits that reduce decoherence, enabling stable quantum computation at room temperature.</p><div class="rc-meta"><span>Lead: <strong>Dr. Nguyen</strong></span><span>Grant: <strong>$9.1M</strong></span></div></div></div>
+      <div class="rc"><div class="rc-head"><div class="rc-tag">Neuroscience</div><h3>Neural Correlates of Decision-Making Under Uncertainty</h3></div><div class="rc-body"><p>fMRI and EEG studies examining how the prefrontal cortex integrates uncertain information to make probabilistic decisions.</p><div class="rc-meta"><span>Lead: <strong>Prof. Torres</strong></span><span>Grant: <strong>$3.5M</strong></span></div></div></div>
+      <div class="rc"><div class="rc-head"><div class="rc-tag">Renewable Energy</div><h3>Next-Generation Perovskite Solar Cell Efficiency Optimization</h3></div><div class="rc-body"><p>Improving perovskite solar cell stability and efficiency beyond 30% through novel halide compositions and encapsulation techniques.</p><div class="rc-meta"><span>Lead: <strong>Dr. Kim</strong></span><span>Grant: <strong>$7.2M</strong></span></div></div></div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><a href="../index.html" class="nav-logo"><div class="crest">W</div><span>Westbrook University</span></a><p>Founded in 1892. A century of academic excellence.</p></div>
+    <div class="footer-col"><h4>Academics</h4><ul><li><a href="programs.html">Programs</a></li><li><a href="research.html">Research</a></li></ul></div>
+    <div class="footer-col"><h4>Campus</h4><ul><li><a href="#">Student Life</a></li><li><a href="#">Housing</a></li></ul></div>
+    <div class="footer-col"><h4>Connect</h4><ul><li><a href="about.html">About Us</a></li><li><a href="admissions.html">Admissions</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">© 2024 Westbrook University. All rights reserved.</div>
+</footer>
+</body>
+</html>

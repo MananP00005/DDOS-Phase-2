@@ -1,0 +1,16 @@
+[
+  {
+    "model": "Random Forest",
+    "accuracy": 1.0,
+    "f1": 1.0,
+    "fpr": 0.0,
+    "cv_f1": 1.0
+  },
+  {
+    "model": "XGBoost",
+    "accuracy": 1.0,
+    "f1": 1.0,
+    "fpr": 0.0,
+    "cv_f1": 1.0
+  }
+]

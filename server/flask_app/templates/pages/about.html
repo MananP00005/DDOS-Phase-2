@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Westbrook University</title>
+  <style>
+    :root{--navy:#0a1628;--gold:#c9a84c;--gold-light:#e8c97a;--cream:#f8f4ed;--white:#fff;--gray:#6b7280;--border:#e0d8cc;--light-gray:#f1f0ee;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--white);color:var(--navy);}
+    nav{position:fixed;top:0;width:100%;z-index:100;background:var(--navy);border-bottom:3px solid var(--gold);display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:72px;box-shadow:0 4px 24px rgba(0,0,0,0.4);}
+    .nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none;}
+    .crest{width:46px;height:46px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:20px;color:var(--navy);}
+    .nav-logo span{font-size:19px;font-weight:800;color:var(--white);}
+    .nav-links{display:flex;gap:4px;list-style:none;}
+    .nav-links a{color:#c9d4e8;text-decoration:none;padding:8px 18px;border-radius:6px;font-size:14px;font-weight:600;transition:all 0.2s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--gold);background:rgba(201,168,76,0.12);}
+    .nav-cta{background:var(--gold)!important;color:var(--navy)!important;font-weight:700!important;border-radius:6px!important;}
+    .page-hero{margin-top:72px;background:linear-gradient(160deg,var(--navy) 0%,#0d1f3c 100%);padding:72px 48px;text-align:center;position:relative;overflow:hidden;}
+    .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 100%,rgba(201,168,76,0.08),transparent 60%);}
+    .page-hero::after{content:'';position:absolute;bottom:0;left:10%;right:10%;height:2px;background:linear-gradient(90deg,transparent,var(--gold),var(--gold-light),var(--gold),transparent);}
+    .page-hero h1{font-size:clamp(2.2rem,4.5vw,3.2rem);font-weight:900;color:var(--white);margin-bottom:14px;position:relative;}
+    .page-hero p{color:#94a3b8;font-size:1.1rem;position:relative;}
+    .breadcrumb{background:var(--light-gray);border-bottom:1px solid var(--border);padding:14px 48px;}
+    .breadcrumb-inner{max-width:1140px;margin:0 auto;font-size:13px;color:var(--gray);}
+    .breadcrumb a{color:var(--gold);text-decoration:none;font-weight:600;}
+    section{padding:80px 48px;}
+    .section-inner{max-width:1140px;margin:0 auto;}
+    .section-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+    .section-label::before{content:'';display:block;width:24px;height:2px;background:var(--gold);}
+    .section-title{font-size:clamp(1.9rem,3vw,2.6rem);font-weight:800;line-height:1.15;color:var(--navy);margin-bottom:16px;}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-bottom:80px;}
+    .about-text p{font-size:1rem;color:var(--gray);line-height:1.8;margin-bottom:16px;}
+    .about-visual{background:var(--navy);border-radius:16px;height:380px;display:flex;align-items:center;justify-content:center;font-size:96px;position:relative;overflow:hidden;border:1px solid rgba(201,168,76,0.2);}
+    .about-visual::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 30%,rgba(201,168,76,0.1),transparent 60%);}
+    .values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:40px;}
+    .value-card{text-align:center;padding:36px 24px;border:1px solid var(--border);border-radius:12px;background:var(--cream);transition:all 0.3s;}
+    .value-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(10,22,40,0.08);}
+    .value-icon{font-size:40px;margin-bottom:18px;display:block;}
+    .value-card h3{font-size:1.05rem;font-weight:700;margin-bottom:10px;color:var(--navy);}
+    .value-card p{font-size:0.88rem;color:var(--gray);line-height:1.65;}
+    .team-section{background:var(--cream);}
+    .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;}
+    .team-card{text-align:center;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:32px 20px;transition:all 0.3s;}
+    .team-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(10,22,40,0.08);}
+    .team-avatar{width:90px;height:90px;margin:0 auto 18px;background:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:36px;border:3px solid var(--gold);box-shadow:0 0 0 4px rgba(201,168,76,0.15);}
+    .team-card h4{font-size:1rem;font-weight:700;margin-bottom:4px;color:var(--navy);}
+    .team-role{font-size:12px;color:var(--gold);font-weight:700;letter-spacing:0.5px;text-transform:uppercase;}
+    .team-card p{font-size:13px;color:var(--gray);margin-top:10px;line-height:1.6;}
+    footer{background:#050d1a;border-top:3px solid var(--gold);padding:60px 48px 28px;}
+    .footer-inner{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;}
+    .footer-brand p{font-size:0.9rem;color:#64748b;margin-top:16px;line-height:1.8;}
+    .footer-col h4{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+    .footer-col ul{list-style:none;}
+    .footer-col li{margin-bottom:10px;}
+    .footer-col a{color:#64748b;text-decoration:none;font-size:14px;transition:color 0.2s;}
+    .footer-col a:hover{color:var(--gold);}
+    .footer-bottom{border-top:1px solid #0f1f35;padding-top:24px;text-align:center;font-size:13px;color:#374151;max-width:1140px;margin:0 auto;}
+    @media(max-width:960px){.about-grid{grid-template-columns:1fr;}.values-grid,.team-grid{grid-template-columns:1fr 1fr;}.footer-inner{grid-template-columns:1fr 1fr;}}
+    @media(max-width:600px){nav{padding:0 20px;}.nav-links{display:none;}section{padding:60px 20px;}.breadcrumb{padding:14px 20px;}.values-grid,.team-grid{grid-template-columns:1fr;}.footer-inner{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="nav-logo"><div class="crest">W</div><span>Westbrook University</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="programs.html">Programs</a></li>
+    <li><a href="research.html">Research</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="admissions.html" class="nav-cta">Apply Now</a></li>
+  </ul>
+</nav>
+<div class="page-hero">
+  <h1>About Westbrook</h1>
+  <p>Over 130 years of shaping minds, advancing knowledge and serving society</p>
+</div>
+<div class="breadcrumb"><div class="breadcrumb-inner"><a href="../index.html">Home</a> › About</div></div>
+<section>
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-label">Our Story</div>
+        <h2 class="section-title">Founded on a Vision of Excellence</h2>
+        <p>Established in 1892 by a coalition of scholars and civic leaders, Westbrook University began as a small liberal arts college with 120 students and 8 faculty members. Over 130 years, it has grown into one of the nation's most respected research universities.</p>
+        <p>Today, our 400-acre campus is home to 42,000 students, 3,200 faculty and staff, 14 colleges, and world-class facilities spanning laboratories, arts centers and a 1.2 million-volume library.</p>
+        <p>Our alumni network of 280,000 graduates spans 150 countries, with notable members in government, science, industry and the arts.</p>
+      </div>
+      <div class="about-visual">🏛️</div>
+    </div>
+    <div class="section-label">What We Stand For</div>
+    <h2 class="section-title">Our Core Values</h2>
+    <div class="values-grid">
+      <div class="value-card"><span class="value-icon">🔍</span><h3>Inquiry</h3><p>We pursue knowledge relentlessly, questioning assumptions and seeking truth through rigorous evidence.</p></div>
+      <div class="value-card"><span class="value-icon">🤝</span><h3>Integrity</h3><p>Academic honesty and ethical conduct are the cornerstones of everything we do.</p></div>
+      <div class="value-card"><span class="value-icon">🌍</span><h3>Inclusion</h3><p>We celebrate diversity of background, thought and experience as essential to great learning.</p></div>
+      <div class="value-card"><span class="value-icon">💡</span><h3>Innovation</h3><p>We foster creative thinking and entrepreneurial spirit to solve the world's most pressing challenges.</p></div>
+    </div>
+  </div>
+</section>
+<section class="team-section">
+  <div class="section-inner">
+    <div class="section-label">Leadership</div>
+    <h2 class="section-title">Meet Our Leadership</h2>
+    <div class="team-grid">
+      <div class="team-card"><div class="team-avatar">👩‍🏫</div><h4>Dr. Eleanor Hayes</h4><div class="team-role">President</div><p>Former MIT Dean. 25 years in higher education leadership.</p></div>
+      <div class="team-card"><div class="team-avatar">👨‍🔬</div><h4>Prof. Marcus Chen</h4><div class="team-role">VP of Research</div><p>Nobel laureate in Chemistry. Led $200M in research initiatives.</p></div>
+      <div class="team-card"><div class="team-avatar">👩‍💼</div><h4>Dr. Priya Sharma</h4><div class="team-role">Dean of Academics</div><p>Curriculum innovator. Champion of interdisciplinary education.</p></div>
+      <div class="team-card"><div class="team-avatar">👨‍💻</div><h4>Prof. James Okafor</h4><div class="team-role">Dean of Technology</div><p>Former Google AI researcher. Leads our computing initiatives.</p></div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><a href="../index.html" class="nav-logo"><div class="crest">W</div><span>Westbrook University</span></a><p>Founded in 1892. A century of academic excellence.</p></div>
+    <div class="footer-col"><h4>Academics</h4><ul><li><a href="programs.html">Programs</a></li><li><a href="research.html">Research</a></li></ul></div>
+    <div class="footer-col"><h4>Campus</h4><ul><li><a href="#">Student Life</a></li><li><a href="#">Housing</a></li></ul></div>
+    <div class="footer-col"><h4>Connect</h4><ul><li><a href="about.html">About Us</a></li><li><a href="admissions.html">Admissions</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">© 2024 Westbrook University. All rights reserved.</div>
+</footer>
+</body>
+</html>
+<div id="srv-status" style="position:fixed;bottom:20px;right:20px;
+     background:#0a1628;color:#22c55e;padding:10px 20px;
+     border-radius:8px;font-weight:bold;border:1px solid #22c55e;
+     font-family:sans-serif;z-index:9999;font-size:14px;">
+  🟢 Server Online
+</div>
+<script>
+async function checkStatus() {
+    try {
+        const r = await fetch('/ping', {signal: AbortSignal.timeout(2000)});
+        if(r.ok) {
+            document.getElementById('srv-status').style.borderColor = '#22c55e';
+            document.getElementById('srv-status').style.color = '#22c55e';
+            document.getElementById('srv-status').innerText = '🟢 Server Online';
+        }
+    } catch(e) {
+        document.getElementById('srv-status').style.borderColor = '#e74c3c';
+        document.getElementById('srv-status').style.color = '#e74c3c';
+        document.getElementById('srv-status').innerText = '🔴 Server Overloaded';
+    }
+}
+setInterval(checkStatus, 2000);
+checkStatus();
+</script>

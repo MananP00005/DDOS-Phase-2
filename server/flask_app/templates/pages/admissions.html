@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admissions — Westbrook University</title>
+  <style>
+    :root{--navy:#0a1628;--gold:#c9a84c;--gold-light:#e8c97a;--cream:#f8f4ed;--white:#fff;--gray:#6b7280;--border:#e0d8cc;--light-gray:#f1f0ee;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--white);color:var(--navy);}
+    nav{position:fixed;top:0;width:100%;z-index:100;background:var(--navy);border-bottom:3px solid var(--gold);display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:72px;box-shadow:0 4px 24px rgba(0,0,0,0.4);}
+    .nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none;}
+    .crest{width:46px;height:46px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:20px;color:var(--navy);}
+    .nav-logo span{font-size:19px;font-weight:800;color:var(--white);}
+    .nav-links{display:flex;gap:4px;list-style:none;}
+    .nav-links a{color:#c9d4e8;text-decoration:none;padding:8px 18px;border-radius:6px;font-size:14px;font-weight:600;transition:all 0.2s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--gold);background:rgba(201,168,76,0.12);}
+    .nav-cta{background:var(--gold)!important;color:var(--navy)!important;font-weight:700!important;border-radius:6px!important;}
+    .page-hero{margin-top:72px;background:linear-gradient(160deg,var(--navy) 0%,#0d1f3c 100%);padding:72px 48px;text-align:center;position:relative;overflow:hidden;}
+    .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 100%,rgba(201,168,76,0.08),transparent 60%);}
+    .page-hero::after{content:'';position:absolute;bottom:0;left:10%;right:10%;height:2px;background:linear-gradient(90deg,transparent,var(--gold),var(--gold-light),var(--gold),transparent);}
+    .page-hero h1{font-size:clamp(2.2rem,4.5vw,3.2rem);font-weight:900;color:var(--white);margin-bottom:14px;position:relative;}
+    .page-hero p{color:#94a3b8;font-size:1.1rem;position:relative;}
+    .breadcrumb{background:var(--light-gray);border-bottom:1px solid var(--border);padding:14px 48px;}
+    .breadcrumb-inner{max-width:1140px;margin:0 auto;font-size:13px;color:var(--gray);}
+    .breadcrumb a{color:var(--gold);text-decoration:none;font-weight:600;}
+    section{padding:80px 48px;}
+    .section-inner{max-width:1140px;margin:0 auto;}
+    .section-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+    .section-label::before{content:'';display:block;width:24px;height:2px;background:var(--gold);}
+    .section-title{font-size:clamp(1.9rem,3vw,2.6rem);font-weight:800;line-height:1.15;color:var(--navy);margin-bottom:32px;}
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-bottom:72px;}
+    .step{padding:36px 24px;border:1px solid var(--border);border-right:none;background:var(--white);text-align:center;position:relative;}
+    .step:last-child{border-right:1px solid var(--border);}
+    .step-num{width:52px;height:52px;margin:0 auto 18px;background:var(--navy);color:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.3rem;border:2px solid rgba(201,168,76,0.3);}
+    .step h3{font-size:1rem;font-weight:700;margin-bottom:10px;color:var(--navy);}
+    .step p{font-size:0.88rem;color:var(--gray);line-height:1.65;}
+    table{width:100%;border-collapse:collapse;margin-top:24px;}
+    thead th{background:var(--navy);color:var(--gold);padding:16px 20px;text-align:left;font-size:12px;letter-spacing:1px;text-transform:uppercase;}
+    tbody td{padding:15px 20px;border-bottom:1px solid var(--border);font-size:14px;color:var(--navy);}
+    tbody tr:nth-child(even) td{background:var(--cream);}
+    .badge{display:inline-block;padding:4px 12px;border-radius:100px;font-size:11px;font-weight:700;}
+    .badge-open{background:#d1fae5;color:#065f46;}
+    .badge-soon{background:#fef3c7;color:#92400e;}
+    .badge-closed{background:#fee2e2;color:#991b1b;}
+    .form-section{background:var(--cream);}
+    .form-wrap{background:var(--white);padding:48px;border-radius:16px;border:1px solid var(--border);max-width:780px;}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+    .fg{display:flex;flex-direction:column;gap:7px;}
+    .fg.full{grid-column:1/-1;}
+    label{font-size:13px;font-weight:700;color:var(--navy);letter-spacing:0.3px;}
+    input,select,textarea{padding:13px 16px;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;font-size:14px;color:var(--navy);transition:border 0.2s;background:var(--white);}
+    input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,0.1);}
+    textarea{resize:vertical;min-height:110px;}
+    .btn-primary{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--navy);padding:15px 36px;border-radius:8px;font-weight:800;font-size:15px;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(201,168,76,0.3);transition:all 0.25s;margin-top:8px;}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(201,168,76,0.45);}
+    footer{background:#050d1a;border-top:3px solid var(--gold);padding:60px 48px 28px;}
+    .footer-inner{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;}
+    .footer-brand p{font-size:0.9rem;color:#64748b;margin-top:16px;line-height:1.8;}
+    .footer-col h4{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+    .footer-col ul{list-style:none;}
+    .footer-col li{margin-bottom:10px;}
+    .footer-col a{color:#64748b;text-decoration:none;font-size:14px;transition:color 0.2s;}
+    .footer-col a:hover{color:var(--gold);}
+    .footer-bottom{border-top:1px solid #0f1f35;padding-top:24px;text-align:center;font-size:13px;color:#374151;max-width:1140px;margin:0 auto;}
+    @media(max-width:960px){.steps{grid-template-columns:1fr 1fr;}.step{border-right:1px solid var(--border);border-bottom:none;}.form-grid{grid-template-columns:1fr;}.footer-inner{grid-template-columns:1fr 1fr;}}
+    @media(max-width:600px){nav{padding:0 20px;}.nav-links{display:none;}section{padding:60px 20px;}.breadcrumb{padding:14px 20px;}.steps{grid-template-columns:1fr;}.form-wrap{padding:24px;}.footer-inner{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="nav-logo"><div class="crest">W</div><span>Westbrook University</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="programs.html">Programs</a></li>
+    <li><a href="research.html">Research</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="admissions.html" class="nav-cta active">Apply Now</a></li>
+  </ul>
+</nav>
+<div class="page-hero">
+  <h1>Admissions</h1>
+  <p>Your journey to Westbrook starts here — applications open for Spring 2025</p>
+</div>
+<div class="breadcrumb"><div class="breadcrumb-inner"><a href="../index.html">Home</a> › Admissions</div></div>
+<section>
+  <div class="section-inner">
+    <div class="section-label">How to Apply</div>
+    <h2 class="section-title">Four Simple Steps</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><h3>Choose Program</h3><p>Browse our 180+ programs and find the right fit for your goals and interests.</p></div>
+      <div class="step"><div class="step-num">2</div><h3>Prepare Documents</h3><p>Transcripts, recommendation letters, personal statement and test scores.</p></div>
+      <div class="step"><div class="step-num">3</div><h3>Submit Application</h3><p>Complete the online form below and pay the $75 application fee.</p></div>
+      <div class="step"><div class="step-num">4</div><h3>Await Decision</h3><p>Decisions released within 4–6 weeks. Check your portal for updates.</p></div>
+    </div>
+    <div class="section-label">Important Dates</div>
+    <h2 class="section-title">Application Deadlines</h2>
+    <table>
+      <thead><tr><th>Program</th><th>Term</th><th>Deadline</th><th>Decision By</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Undergraduate</td><td>Spring 2025</td><td>January 15, 2025</td><td>March 1, 2025</td><td><span class="badge badge-open">Open</span></td></tr>
+        <tr><td>Graduate</td><td>Spring 2025</td><td>January 15, 2025</td><td>February 28, 2025</td><td><span class="badge badge-open">Open</span></td></tr>
+        <tr><td>Undergraduate</td><td>Fall 2025</td><td>March 1, 2025</td><td>May 15, 2025</td><td><span class="badge badge-soon">Opens Feb 1</span></td></tr>
+        <tr><td>MBA</td><td>Fall 2025</td><td>April 1, 2025</td><td>May 30, 2025</td><td><span class="badge badge-soon">Opens Feb 1</span></td></tr>
+        <tr><td>Doctoral</td><td>Fall 2025</td><td>December 1, 2024</td><td>February 1, 2025</td><td><span class="badge badge-closed">Closed</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="form-section">
+  <div class="section-inner">
+    <div class="section-label">Get Started</div>
+    <h2 class="section-title">Start Your Application</h2>
+    <div class="form-wrap">
+      <div class="form-grid">
+        <div class="fg"><label>First Name</label><input type="text" placeholder="John"></div>
+        <div class="fg"><label>Last Name</label><input type="text" placeholder="Smith"></div>
+        <div class="fg"><label>Email Address</label><input type="email" placeholder="john@email.com"></div>
+        <div class="fg"><label>Phone Number</label><input type="tel" placeholder="+1 (555) 000-0000"></div>
+        <div class="fg"><label>Program of Interest</label>
+          <select>
+            <option>Select a program...</option>
+            <option>Computer Science</option>
+            <option>Artificial Intelligence</option>
+            <option>Cybersecurity</option>
+            <option>Data Science</option>
+            <option>MBA</option>
+            <option>Law (JD)</option>
+            <option>Biotechnology</option>
+            <option>Engineering</option>
+          </select>
+        </div>
+        <div class="fg"><label>Entry Term</label>
+          <select>
+            <option>Spring 2025</option>
+            <option>Fall 2025</option>
+            <option>Spring 2026</option>
+          </select>
+        </div>
+        <div class="fg full"><label>Tell us about yourself</label><textarea placeholder="Brief background, goals, and why you're interested in Westbrook..."></textarea></div>
+      </div>
+      <button class="btn-primary">Submit Enquiry →</button>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><a href="../index.html" class="nav-logo"><div class="crest">W</div><span>Westbrook University</span></a><p>Founded in 1892. A century of academic excellence.</p></div>
+    <div class="footer-col"><h4>Academics</h4><ul><li><a href="programs.html">Programs</a></li><li><a href="research.html">Research</a></li></ul></div>
+    <div class="footer-col"><h4>Campus</h4><ul><li><a href="#">Student Life</a></li><li><a href="#">Housing</a></li></ul></div>
+    <div class="footer-col"><h4>Connect</h4><ul><li><a href="about.html">About Us</a></li><li><a href="admissions.html">Admissions</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">© 2024 Westbrook University. All rights reserved.</div>
+</footer>
+</body>
+</html>
+<div id="srv-status" style="position:fixed;bottom:20px;right:20px;
+     background:#0a1628;color:#22c55e;padding:10px 20px;
+     border-radius:8px;font-weight:bold;border:1px solid #22c55e;
+     font-family:sans-serif;z-index:9999;font-size:14px;">
+  🟢 Server Online
+</div>
+<script>
+async function checkStatus() {
+    try {
+        const r = await fetch('/ping', {signal: AbortSignal.timeout(2000)});
+        if(r.ok) {
+            document.getElementById('srv-status').style.borderColor = '#22c55e';
+            document.getElementById('srv-status').style.color = '#22c55e';
+            document.getElementById('srv-status').innerText = '🟢 Server Online';
+        }
+    } catch(e) {
+        document.getElementById('srv-status').style.borderColor = '#e74c3c';
+        document.getElementById('srv-status').style.color = '#e74c3c';
+        document.getElementById('srv-status').innerText = '🔴 Server Overloaded';
+    }
+}
+setInterval(checkStatus, 2000);
+checkStatus();
+</script>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programs — Westbrook University</title>
+  <style>
+    :root{--navy:#0a1628;--gold:#c9a84c;--gold-light:#e8c97a;--cream:#f8f4ed;--white:#fff;--gray:#6b7280;--border:#e0d8cc;--light-gray:#f1f0ee;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--white);color:var(--navy);}
+    nav{position:fixed;top:0;width:100%;z-index:100;background:var(--navy);border-bottom:3px solid var(--gold);display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:72px;box-shadow:0 4px 24px rgba(0,0,0,0.4);}
+    .nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none;}
+    .crest{width:46px;height:46px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:20px;color:var(--navy);}
+    .nav-logo span{font-size:19px;font-weight:800;color:var(--white);}
+    .nav-links{display:flex;gap:4px;list-style:none;}
+    .nav-links a{color:#c9d4e8;text-decoration:none;padding:8px 18px;border-radius:6px;font-size:14px;font-weight:600;transition:all 0.2s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--gold);background:rgba(201,168,76,0.12);}
+    .nav-cta{background:var(--gold)!important;color:var(--navy)!important;font-weight:700!important;border-radius:6px!important;}
+    .page-hero{margin-top:72px;background:linear-gradient(160deg,var(--navy) 0%,#0d1f3c 100%);padding:72px 48px;text-align:center;position:relative;overflow:hidden;}
+    .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 100%,rgba(201,168,76,0.08),transparent 60%);}
+    .page-hero::after{content:'';position:absolute;bottom:0;left:10%;right:10%;height:2px;background:linear-gradient(90deg,transparent,var(--gold),var(--gold-light),var(--gold),transparent);}
+    .page-hero h1{font-size:clamp(2.2rem,4.5vw,3.2rem);font-weight:900;color:var(--white);margin-bottom:14px;position:relative;}
+    .page-hero p{color:#94a3b8;font-size:1.1rem;position:relative;}
+    .breadcrumb{background:var(--light-gray);border-bottom:1px solid var(--border);padding:14px 48px;}
+    .breadcrumb-inner{max-width:1140px;margin:0 auto;font-size:13px;color:var(--gray);}
+    .breadcrumb a{color:var(--gold);text-decoration:none;font-weight:600;}
+    .filter-bar{background:var(--light-gray);border-bottom:1px solid var(--border);padding:20px 48px;}
+    .filter-inner{max-width:1140px;margin:0 auto;display:flex;gap:10px;flex-wrap:wrap;}
+    .filter-btn{padding:9px 20px;border-radius:100px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--white);color:var(--navy);transition:all 0.2s;}
+    .filter-btn.active,.filter-btn:hover{background:var(--navy);color:var(--gold);border-color:var(--navy);}
+    section{padding:80px 48px;}
+    .section-inner{max-width:1140px;margin:0 auto;}
+    .programs-full{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+    .prog-card{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:all 0.3s;}
+    .prog-card:hover{transform:translateY(-5px);box-shadow:0 20px 48px rgba(10,22,40,0.12);}
+    .prog-header{background:var(--navy);padding:28px 24px;display:flex;align-items:flex-start;gap:16px;}
+    .prog-icon{font-size:32px;flex-shrink:0;margin-top:4px;}
+    .prog-header h3{font-size:1.05rem;font-weight:700;color:var(--white);margin-bottom:6px;line-height:1.3;}
+    .prog-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);background:rgba(201,168,76,0.15);padding:4px 10px;border-radius:2px;}
+    .prog-body{padding:24px;}
+    .prog-body p{font-size:0.9rem;color:var(--gray);margin-bottom:18px;line-height:1.65;}
+    .prog-meta{display:flex;gap:10px;flex-wrap:wrap;}
+    .meta-tag{font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:var(--navy);background:var(--cream);padding:5px 12px;border-radius:100px;border:1px solid var(--border);}
+    footer{background:#050d1a;border-top:3px solid var(--gold);padding:60px 48px 28px;}
+    .footer-inner{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;}
+    .footer-brand p{font-size:0.9rem;color:#64748b;margin-top:16px;line-height:1.8;}
+    .footer-col h4{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+    .footer-col ul{list-style:none;}
+    .footer-col li{margin-bottom:10px;}
+    .footer-col a{color:#64748b;text-decoration:none;font-size:14px;transition:color 0.2s;}
+    .footer-col a:hover{color:var(--gold);}
+    .footer-bottom{border-top:1px solid #0f1f35;padding-top:24px;text-align:center;font-size:13px;color:#374151;max-width:1140px;margin:0 auto;}
+    @media(max-width:960px){.programs-full{grid-template-columns:1fr 1fr;}.footer-inner{grid-template-columns:1fr 1fr;}}
+    @media(max-width:600px){nav{padding:0 20px;}.nav-links{display:none;}.programs-full{grid-template-columns:1fr;}section{padding:60px 20px;}.filter-bar,.breadcrumb{padding:14px 20px;}.footer-inner{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="nav-logo"><div class="crest">W</div><span>Westbrook University</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="programs.html" class="active">Programs</a></li>
+    <li><a href="research.html">Research</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="admissions.html" class="nav-cta">Apply Now</a></li>
+  </ul>
+</nav>
+<div class="page-hero">
+  <h1>Academic Programs</h1>
+  <p>180+ undergraduate, graduate and doctoral programs across 12 faculties</p>
+</div>
+<div class="breadcrumb"><div class="breadcrumb-inner"><a href="../index.html">Home</a> › Programs</div></div>
+<div class="filter-bar">
+  <div class="filter-inner">
+    <button class="filter-btn active">All Programs</button>
+    <button class="filter-btn">Undergraduate</button>
+    <button class="filter-btn">Graduate</button>
+    <button class="filter-btn">Doctoral</button>
+    <button class="filter-btn">Online</button>
+  </div>
+</div>
+<section>
+  <div class="section-inner">
+    <div class="programs-full">
+      <div class="prog-card">
+        <div class="prog-header"><div class="prog-icon">💻</div><div><h3>Computer Science</h3><span class="prog-badge">UNDERGRADUATE · GRADUATE</span></div></div>
+        <div class="prog-body"><p>Foundations of computing, algorithms, AI and software systems. Specializations in Machine Learning, Cybersecurity and Cloud Computing.</p><div class="prog-meta"><span class="meta-tag">4 Years</span><span class="meta-tag">48 Courses</span><span class="meta-tag">Full-time</span></div></div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-header"><div class="prog-icon">🤖</div><div><h3>Artificial Intelligence</h3><span class="prog-badge">GRADUATE · DOCTORAL</span></div></div>
+        <div class="prog-body"><p>Deep learning, natural language processing, computer vision and AI ethics. Collaborative research with leading tech companies.</p><div class="prog-meta"><span class="meta-tag">2 Years</span><span class="meta-tag">Research Track</span></div></div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-header"><div class="prog-icon">🔒</div><div><h3>Cybersecurity</h3><span class="prog-badge">UNDERGRADUATE · GRADUATE</span></div></div>
+        <div class="prog-body"><p>Network security, cryptography, ethical hacking and digital forensics. Industry-certified curriculum with hands-on lab facilities.</p><div class="prog-meta"><span class="meta-tag">4 Years</span><span class="meta-tag">Lab Access</span></div></div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-header"><div class="prog-icon">🔬</div><div><h3>Biotechnology</h3><span class="prog-badge">UNDERGRADUATE · GRADUATE</span></div></div>
+        <div class="prog-body"><p>Genetic engineering, molecular biology and pharmaceutical research in state-of-the-art biosafety labs.</p><div class="prog-meta"><span class="meta-tag">4 Years</span><span class="meta-tag">Research Lab</span></div></div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-header"><div class="prog-icon">📊</div><div><h3>Data Science</h3><span class="prog-badge">GRADUATE · ONLINE</span></div></div>
+        <div class="prog-body"><p>Statistical modeling, big data analytics, Python, R and visualization. Capstone projects with real company datasets.</p><div class="prog-meta"><span class="meta-tag">18 Months</span><span class="meta-tag">Online Available</span></div></div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-header"><div class="prog-icon">🏗️</div><div><h3>Civil Engineering</h3><span class="prog-badge">UNDERGRADUATE · GRADUATE</span></div></div>
+        <div class="prog-body"><p>Structural, environmental and transportation engineering with strong industry placement across 50+ partner firms.</p><div class="prog-meta"><span class="meta-tag">4 Years</span><span class="meta-tag">Accredited</span></div></div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-header"><div class="prog-icon">💼</div><div><h3>MBA</h3><span class="prog-badge">GRADUATE · ONLINE</span></div></div>
+        <div class="prog-body"><p>Accelerated MBA with specializations in Finance, Marketing, Operations and Entrepreneurship. Evening cohorts available.</p><div class="prog-meta"><span class="meta-tag">2 Years</span><span class="meta-tag">Part-time OK</span></div></div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-header"><div class="prog-icon">⚖️</div><div><h3>Law (JD)</h3><span class="prog-badge">GRADUATE · DOCTORAL</span></div></div>
+        <div class="prog-body"><p>Constitutional, corporate and international law. Moot court competitions, legal clinics and judicial internship placements.</p><div class="prog-meta"><span class="meta-tag">3 Years</span><span class="meta-tag">Bar Prep</span></div></div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-header"><div class="prog-icon">🎨</div><div><h3>Fine Arts & Design</h3><span class="prog-badge">UNDERGRADUATE</span></div></div>
+        <div class="prog-body"><p>Painting, sculpture, graphic design and digital media arts. Annual gallery exhibitions and industry portfolio reviews.</p><div class="prog-meta"><span class="meta-tag">4 Years</span><span class="meta-tag">Studio Access</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><a href="../index.html" class="nav-logo"><div class="crest">W</div><span>Westbrook University</span></a><p>Founded in 1892. A century of academic excellence.</p></div>
+    <div class="footer-col"><h4>Academics</h4><ul><li><a href="programs.html">Programs</a></li><li><a href="research.html">Research</a></li></ul></div>
+    <div class="footer-col"><h4>Campus</h4><ul><li><a href="#">Student Life</a></li><li><a href="#">Housing</a></li></ul></div>
+    <div class="footer-col"><h4>Connect</h4><ul><li><a href="about.html">About Us</a></li><li><a href="admissions.html">Admissions</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">© 2024 Westbrook University. All rights reserved.</div>
+</footer>
+</body>
+</html>
+<div id="srv-status" style="position:fixed;bottom:20px;right:20px;
+     background:#0a1628;color:#22c55e;padding:10px 20px;
+     border-radius:8px;font-weight:bold;border:1px solid #22c55e;
+     font-family:sans-serif;z-index:9999;font-size:14px;">
+  🟢 Server Online
+</div>
+<script>
+async function checkStatus() {
+    try {
+        const r = await fetch('/ping', {signal: AbortSignal.timeout(2000)});
+        if(r.ok) {
+            document.getElementById('srv-status').style.borderColor = '#22c55e';
+            document.getElementById('srv-status').style.color = '#22c55e';
+            document.getElementById('srv-status').innerText = '🟢 Server Online';
+        }
+    } catch(e) {
+        document.getElementById('srv-status').style.borderColor = '#e74c3c';
+        document.getElementById('srv-status').style.color = '#e74c3c';
+        document.getElementById('srv-status').innerText = '🔴 Server Overloaded';
+    }
+}
+setInterval(checkStatus, 2000);
+checkStatus();
+</script>

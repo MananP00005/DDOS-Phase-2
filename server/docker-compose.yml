@@ -1,0 +1,130 @@
+networks:
+  ddos-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+volumes:
+  loki_data:
+  prometheus_data:
+  grafana_data:
+
+services:
+
+  flask:
+    build: ./flask_app
+    container_name: ddos-flask
+    networks:
+      - ddos-net
+    restart: unless-stopped
+    environment:
+      - FLASK_ENV=production
+      - SINKHOLE_MODE=false
+
+  sinkhole:
+    build: ./flask_app
+    container_name: ddos-sinkhole
+    networks:
+      - ddos-net
+    restart: unless-stopped
+    environment:
+      - FLASK_ENV=production
+      - SINKHOLE_MODE=true
+
+  nginx:
+    image: nginx:1.25-alpine
+    container_name: ddos-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./logs:/var/log/nginx
+      - ./defense/cache/blocked_ips.conf:/etc/nginx/blocked_ips.conf
+      - ./nginx/sinkholes.conf:/etc/nginx/sinkholes.conf:ro
+    depends_on:
+      - flask
+      - sinkhole
+    networks:
+      - ddos-net
+    restart: unless-stopped
+
+  promtail:
+    image: grafana/promtail:2.9.0
+    container_name: ddos-promtail
+    volumes:
+      - ./logs:/var/log/nginx:ro
+      - ./promtail/promtail.yml:/etc/promtail/config.yml:ro
+    command: -config.file=/etc/promtail/config.yml
+    networks:
+      - ddos-net
+    depends_on:
+      - loki
+    restart: unless-stopped
+
+  loki:
+    image: grafana/loki:2.9.0
+    container_name: ddos-loki
+    ports:
+      - "3100:3100"
+    volumes:
+      - loki_data:/loki
+    networks:
+      - ddos-net
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: ddos-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    networks:
+      - ddos-net
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: ddos-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=ddoslab123
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+    networks:
+      - ddos-net
+    depends_on:
+      - loki
+      - prometheus
+    restart: unless-stopped
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: ddos-node-exporter
+    pid: host
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.sysfs=/host/sys'
+    networks:
+      - ddos-net
+    restart: unless-stopped
+
+  nginx-exporter:
+    image: nginx/nginx-prometheus-exporter:latest
+    container_name: ddos-nginx-exporter
+    command:
+      - '--nginx.scrape-uri=http://nginx/nginx_status'
+    networks:
+      - ddos-net
+    depends_on:
+      - nginx
+    restart: unless-stopped
