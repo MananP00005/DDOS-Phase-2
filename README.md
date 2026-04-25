@@ -2,8 +2,6 @@
 
 ### Phase 2: ML-Based Defense System
 
-**CS559 — Network Security | Binghamton University, Watson School of Engineering**
-
 > Implement a DDoS attack on a web server that incorporates an ML-based defense mechanism. Whenever a DDoS attack is detected, the ML model will identify and prevent it in real time, and attackers will be redirected to a deception system automatically — demonstrating both the attack vector and an automated, intelligent countermeasure.
 
 ---
@@ -488,7 +486,5 @@ chmod +x botmaster/attack.sh
 ---
 
 ## License
-
-This project was developed for **CS559 — Network Security** at Binghamton University, Watson School of Engineering. It is intended for **educational and research purposes only**.
 
 > **Disclaimer:** This lab is designed for controlled educational environments. Running DDoS attacks against systems you do not own or have explicit permission to test is illegal. All attacks in this project target infrastructure provisioned and controlled by the project author on GCP.
